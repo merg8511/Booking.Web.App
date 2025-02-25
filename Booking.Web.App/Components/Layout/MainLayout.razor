@@ -1,0 +1,192 @@
+﻿@using Booking.Web.App.Components.Extensions
+@inherits LayoutComponentBase
+
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudImage Src="images/refsol.webp" Alt="Mony the dog" Elevation="25" Class="rounded-lg" Height="50" ObjectFit="ObjectFit.Contain" />
+        <MudText Typo="Typo.h5" Class="ml-3 d-none d-md-inline">REFUGIO DEL SOL</MudText>
+
+        <!-- Botón de menú en pantallas pequeñas -->
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" OnClick="ToggleDrawer" Class="d-md-none" />
+
+        <!-- Menú principal visible en pantallas grandes -->
+        <MudToolBar Class="d-none d-md-flex flex-grow-1 justify-between px-4">
+            <MudStack Row="true" Class="d-none d-md-flex flex-grow-1 gap-4 justify-center align-items-center" Spacing="20">
+                <MudButton Variant="Variant.Text" Color="Color.Inherit" OnClick="@(() => ScrollToSection("inicio"))" Class="nav-menu-bottom">Inicio</MudButton>
+                <MudButton Variant="Variant.Text" Color="Color.Inherit" OnClick="@(() => ScrollToSection("servicios"))" Class="nav-menu-bottom">Servicios</MudButton>
+                <MudButton Variant="Variant.Text" Color="Color.Inherit" OnClick="@(() => ScrollToSection("galeria"))" Class="nav-menu-bottom">Galería</MudButton>
+                <MudButton Variant="Variant.Text" Color="Color.Inherit" OnClick="@(() => ScrollToSection("experiencias"))" Class="nav-menu-bottom">Experiencias</MudButton>
+                <MudLink Typo="Typo.h6" Href="/faqs" Color="Color.Inherit" Underline="Underline.None" Class="nav-menu-bottom">FAQ</MudLink>
+            </MudStack>
+
+            <MudSpacer />
+            <MudButton ButtonType="ButtonType.Button" EndIcon="@Icons.Material.Filled.CalendarMonth" Variant="Variant.Filled" Color="Color.Primary">RESERVA AHORA</MudButton>
+
+        </MudToolBar>
+
+        <MudSpacer />
+
+        <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
+        <MudIconButton Icon="@Icons.Material.Filled.Person" Color="Color.Inherit" />
+    </MudAppBar>
+
+    <!-- Drawer para móviles -->
+    <MudDrawer @bind-Open="_drawerOpen" Anchor="Anchor.Left" Variant="DrawerVariant.Temporary">
+        <MudImage Src="images/refsol.webp" Alt="Mony the dog" Class="rounded-lg" Height="50" ObjectFit="ObjectFit.Contain" />
+        <MudList T="string">
+            <MudListItem>
+                <MudText Typo="Typo.h5" Class="">REFUGIO DEL SOL</MudText>
+            </MudListItem>
+            <MudDivider DividerType="DividerType.Inset" />
+            <MudListItem>
+                <MudLink Href="#"><MudIcon Icon="@Icons.Material.Filled.Home" /> Inicio</MudLink>
+            </MudListItem>
+            <MudListItem>
+                <MudLink Href="#"><MudIcon Icon="@Icons.Material.Filled.Work" /> Servicios</MudLink>
+            </MudListItem>
+            <MudListItem>
+                <MudLink Href="#"><MudIcon Icon="@Icons.Material.Filled.Image" /> Galería</MudLink>
+            </MudListItem>
+            <MudListItem>
+                <MudIcon Icon="@Icons.Material.Filled.ConnectWithoutContact" /> <MudLink Href="#">Experiencias</MudLink>
+            </MudListItem>
+            <MudListItem>
+                <MudIcon Icon="@Icons.Material.Filled.QuestionAnswer" /><MudLink Href="#">FAQ</MudLink>
+            </MudListItem>
+            <MudListItem>
+                <MudButton ButtonType="ButtonType.Button" EndIcon="@Icons.Material.Filled.CalendarMonth" Variant="Variant.Filled" Color="Color.Primary">RESERVA AHORA</MudButton>
+            </MudListItem>
+        </MudList>
+    </MudDrawer>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>
+
+@code {
+
+    private bool _drawerOpen = false;
+    private bool _isDarkMode = false;
+    private MudTheme? _theme = null;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        _theme = new()
+            {
+                PaletteLight = _lightPalette,
+                PaletteDark = _darkPalette,
+                Typography = _typography,
+                LayoutProperties = new LayoutProperties()
+            };
+    }
+
+    void ToggleDrawer()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    private void DarkModeToggle()
+    {
+        _isDarkMode = !_isDarkMode;
+    }
+
+    private readonly MudPaletteExtensions _lightPalette = new()
+        {
+            AppbarText = "#FFFFFF",
+            //AppbarBackground = "rgba(44, 62, 80, 0.8)", //Transparent
+            AppbarBackground = "#2C3E50", //Solid
+            Primary = "#FF9933",
+            Secondary = "#ccc",
+            Tertiary = "#48C9B0",
+            ActionHover = "#ff0f00",
+            PrimaryLighten = "#F5E0C3",
+
+
+            Black = "#110e2d",
+            DrawerBackground = "#FAF3E0",
+            GrayLight = "#DDE5B6",
+            GrayLighter = "#F0EBCE"
+        };
+
+    private readonly MudPaletteDarkExtensions _darkPalette = new()
+        {
+            ActionHover = "#FF9933",
+
+            Primary = "#3A78C2",
+            Surface = "#1C1F26",
+            Background = "#1C1F26",
+            BackgroundGray = "#181B22",
+            AppbarText = "#A8A8A8",
+            AppbarBackground = "rgba(28, 31, 38, 0.8)",
+            DrawerBackground = "#242730",
+            ActionDefault = "#748B9A",
+            ActionDisabled = "#9999994d",
+            ActionDisabledBackground = "#605f6d4d",
+            TextPrimary = "#E0E0E0",
+            TextSecondary = "#A8A8A8",
+            TextDisabled = "#ffffff33",
+            DrawerIcon = "#A8A8A8",
+            DrawerText = "#A8A8A8",
+            GrayLight = "#2C3840",
+            GrayLighter = "#242730",
+            Info = "#468ACD",
+            Success = "#3D8F45",
+            Warning = "#E0A800",
+            Error = "#D84343",
+            LinesDefault = "#2F3A42",
+            TableLines = "#2F3A42",
+            Divider = "#2A3238",
+            OverlayLight = "#1C1F2680",
+            Secondary = "#ccc"
+        };
+
+
+    private readonly Typography _typography = new()
+        {
+            Default = new DefaultTypography()
+            {
+                FontFamily = new[] { "Poppins", "sans-serif" }
+            }
+        };
+
+
+    public string DarkLightModeButtonIcon => _isDarkMode switch
+    {
+        true => Icons.Material.Rounded.AutoMode,
+        false => Icons.Material.Outlined.DarkMode,
+    };
+
+    private async Task ScrollToSection(string sectionId)
+    {
+        string currentUrl = Navigation.Uri;
+
+        if (!currentUrl.EndsWith("/")) // Si estamos en otra página (Ej: /faqs)
+        {
+            Navigation.NavigateTo($"/#{sectionId}", forceLoad: true); // Navegar a Home con el hash
+        }
+        else
+        {
+            await Task.Delay(100); // Asegura que la sección exista antes de hacer scroll
+            await JS.InvokeVoidAsync("scrollToSection", sectionId);
+            await JS.InvokeVoidAsync("initAnimations");
+        }
+    }
+}
+
+

@@ -1,0 +1,49 @@
+﻿@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<div id="inicio" class="hero-container">
+    <MudCarousel TData="string"
+                 Class="hero-carousel"
+                 ShowArrows="false"
+                 ShowBullets="false"
+                 EnableSwipeGesture="false"
+                 AutoCycle="true">
+
+        <MudCarouselItem Transition="Transition.Fade">
+            <MudImage src="https://i.pinimg.com/564x/3c/32/e4/3c32e4e1a73bb0c7f157ef0f5525899d.jpg" class="carousel-image" />
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Fade">
+            <MudImage src="https://a.travel-assets.com/findyours-php/viewfinder/images/res40/262000/262884-Ranch-Beach-Paraty.jpg" class="carousel-image" />
+        </MudCarouselItem>
+        <MudCarouselItem Transition="Transition.Fade">
+            <MudImage src="https://photos.encuentra24.com/t_or_fh_l/f_auto/v1/sv/18/45/07/26/18450726_1a0a20" class="carousel-image" />
+        </MudCarouselItem>
+    </MudCarousel>
+
+    <div class="hero-overlay">
+        <MudText Class="text-white" Typo="Typo.h2">Bienvenido a Refugio del Sol</MudText>
+        <MudButton Color="Color.Primary"
+                   Variant="Variant.Filled"
+                   Size="Size.Large"
+                   OnClick="@(() => ScrollToSection("servicios"))">
+            Explorar
+        </MudButton>
+    </div>
+</div>
+
+@code {
+    private async Task ScrollToSection(string sectionId)
+    {
+        string currentUrl = Navigation.Uri;
+
+        if (!currentUrl.EndsWith("/")) // Si estamos en otra página (Ej: /faqs)
+        {
+            Navigation.NavigateTo($"/#{sectionId}", forceLoad: true); // Navegar a Home con el hash
+        }
+        else
+        {
+            await Task.Delay(100); // Asegura que la sección exista antes de hacer scroll
+            await JS.InvokeVoidAsync("scrollToSection", sectionId);
+        }
+    }
+}

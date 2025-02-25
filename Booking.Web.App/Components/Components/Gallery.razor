@@ -1,0 +1,41 @@
+﻿<section id="galeria" class="gallery-section">
+    <MudText Typo="Typo.h3" Class="section-title animate-gallery">Nuestra Galería</MudText>
+
+    <MudGrid Justify="Justify.Center" Spacing="3">
+        @foreach (var image in _images)
+        {
+            <MudItem xs="12" sm="6" md="4" lg="4">
+                <MudImage Elevation="4" Src="@image" Class="gallery-image animate-gallery" @onclick="() => OpenImage(image)" />
+            </MudItem>
+        }
+    </MudGrid>
+</section>
+
+@code {
+    private List<string> _images;
+
+    protected override void OnInitialized() =>
+       _images = new()
+               {
+            "https://placehold.co/600x400",
+            "https://placehold.co/600x400",
+            "https://placehold.co/600x400",
+            "https://placehold.co/600x400",
+            "https://placehold.co/600x400",
+            "https://placehold.co/600x400"
+               };
+
+
+    private async Task OpenImage(string image)
+    {
+        var parameters = new DialogParameters
+        {
+            { "ImageUrl", image }
+        };
+
+        var options = new DialogOptions { MaxWidth = MaxWidth.ExtraLarge, CloseButton = true };
+
+        await _dialogService.ShowAsync<GalleryDialog>(null, parameters, options);
+    }
+}
+

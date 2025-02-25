@@ -1,0 +1,42 @@
+﻿@page "/faqs"
+@using Booking.Web.App.Components.Components
+
+<section class="faq-section">
+    <MudText Typo="Typo.h3" Class="section-title">Preguntas Frecuentes</MudText>
+
+    <MudGrid Justify="Justify.Center" Spacing="4">
+        <MudItem xs="12" md="8">
+            @foreach (var faq in _faqList)
+            {
+                <MudExpansionPanels Dense Gutters="false" Class="mt-2">
+                    <MudExpansionPanel Text="@faq.Question" style="font-weight:bold" Expanded="false">
+                        <MudText Typo="Typo.body1">@faq.Answer</MudText>
+                    </MudExpansionPanel>
+                </MudExpansionPanels>
+
+            }
+        </MudItem>
+    </MudGrid>
+</section>
+
+<Footer />
+
+@code {
+    private List<FAQ> _faqList;
+
+    protected override void OnInitialized() =>
+        _faqList = new()
+                    {
+            new FAQ { Question = "¿Cuáles son los horarios de check-in y check-out?", Answer = "El check-in es a partir de las 3:00 PM y el check-out es hasta las 11:00 AM." },
+            new FAQ { Question = "¿Se permiten mascotas?", Answer = "Sí, aceptamos mascotas en ciertas habitaciones. Por favor, consulta con nosotros antes de tu reserva." },
+            new FAQ { Question = "¿El rancho tiene acceso privado a la playa?", Answer = "Sí, nuestros huéspedes tienen acceso exclusivo a la playa privada del rancho." },
+            new FAQ { Question = "¿Hay servicio de transporte al aeropuerto?", Answer = "Ofrecemos servicio de transporte con costo adicional. Contáctanos para más información." },
+            new FAQ { Question = "¿Cuentan con paquetes especiales para eventos?", Answer = "Sí, ofrecemos paquetes personalizados para bodas, cumpleaños y eventos corporativos." }
+                    };
+
+    private class FAQ
+    {
+        public string Question { get; set; }
+        public string Answer { get; set; }
+    }
+}

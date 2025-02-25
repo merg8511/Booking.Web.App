@@ -1,0 +1,80 @@
+﻿<section id="experiencias" class="experiences-section">
+    <MudText Typo="Typo.h3" Class="section-title animate-fade-in">Lo que dicen nuestros visitantes</MudText>
+
+    <MudCarousel TData="string" AutoCycle="true" ShowArrows="true" ShowBullets="false" Class="carousel-experiences">
+        @foreach (var group in _experienceGroups)
+        {
+            <MudCarouselItem Class="carousel-item">
+                <MudGrid Justify="Justify.Center" Spacing="6">
+                    @foreach (var exp in group)
+                    {
+                        <MudItem xs="12" sm="6" md="4">
+                            <MudCard Class="experience-card" Elevation="3">
+                                <MudCardHeader>
+                                    <CardHeaderAvatar>
+                                        <MudImage Src="@exp.Image" Style="border-radius:50%" Height="75" />
+                                    </CardHeaderAvatar>
+                                    <CardHeaderContent>
+                                        <MudText Typo="Typo.body1" Class="exp-name">@exp.Name</MudText>
+                                    </CardHeaderContent>
+                                    <CardHeaderActions>
+                                        <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" />
+                                    </CardHeaderActions>
+                                </MudCardHeader>
+
+                                <MudCardMedia Image="https://placehold.co/200x250" Height="200" />
+
+                                <MudCardContent>
+                                    <MudText Typo="Typo.body2">@exp.Review</MudText>
+                                </MudCardContent>
+
+                                <MudCardActions Class="rating-container">
+                                    <MudRating SelectedValue="@exp.Stars" ReadOnly="true" Size="Size.Medium" />
+                                </MudCardActions>
+                            </MudCard>
+                        </MudItem>
+                    }
+                </MudGrid>
+            </MudCarouselItem>
+        }
+    </MudCarousel>
+</section>
+
+@code {
+    private List<Experiences> _experiences;
+    private List<List<Experiences>> _experienceGroups;
+
+    protected override void OnInitialized()
+    {
+        _experiences = new()
+        {
+            new Experiences { Name = "Carlos Pérez", Review = "¡Increíble lugar! La mejor experiencia de mi vida.", Image = "https://randomuser.me/api/portraits/men/32.jpg", Stars = 5 },
+            new Experiences { Name = "Ana López", Review = "La atención y las vistas son espectaculares.", Image = "https://randomuser.me/api/portraits/women/45.jpg", Stars = 4 },
+            new Experiences { Name = "Jorge Ramírez", Review = "Un lugar perfecto para relajarse y disfrutar.", Image = "https://randomuser.me/api/portraits/men/50.jpg", Stars = 5 },
+            new Experiences { Name = "Marta Gómez", Review = "La comida es excelente y las vistas inigualables.", Image = "https://randomuser.me/api/portraits/women/30.jpg", Stars = 5 },
+            new Experiences { Name = "Luis Torres", Review = "Una experiencia maravillosa, volveré sin duda.", Image = "https://randomuser.me/api/portraits/men/40.jpg", Stars = 4 },
+            new Experiences { Name = "Sofía Herrera", Review = "Un lugar lleno de paz y buena energía.", Image = "https://randomuser.me/api/portraits/women/35.jpg", Stars = 5 },
+            new Experiences { Name = "Pedro Castellanos", Review = "Todo impecable, desde la atención hasta las instalaciones.", Image = "https://randomuser.me/api/portraits/men/28.jpg", Stars = 5 }
+        };
+
+        _experienceGroups = CreateGroups(_experiences, 3);
+    }
+
+    private List<List<Experiences>> CreateGroups(List<Experiences> experiences, int groupSize)
+    {
+        var groups = new List<List<Experiences>>();
+        for (int i = 0; i < experiences.Count; i += groupSize)
+        {
+            groups.Add(experiences.Skip(i).Take(groupSize).ToList());
+        }
+        return groups;
+    }
+
+    private class Experiences
+    {
+        public string Name { get; set; }
+        public string Review { get; set; }
+        public string Image { get; set; }
+        public int Stars { get; set; }
+    }
+}

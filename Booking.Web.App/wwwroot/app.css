@@ -1,0 +1,320 @@
+/*NAVBAR SECTION*/
+.nav-menu-bottom {
+    padding: 5px;
+}
+
+    .nav-menu-bottom:hover {
+        background-color: var(--mud-palette-secondary);
+        color: var(--mud-palette-text-primary);
+        border-radius: 5px;
+    }
+
+/*HERO SECTION */
+.hero-container {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    overflow: hidden;
+}
+
+.hero-carousel {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-container .hero-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+/*SERVICES SECTION*/
+.services-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--mud-palette-primary-lighten), rgba(255, 255, 255, 0.8));
+}
+
+.section-title {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.service-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.service-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.service-button-container {
+    padding: 2rem;
+}
+
+.order-md-1 {
+    order: 1;
+}
+
+.order-md-2 {
+    order: 2;
+}
+
+@media (max-width: 768px) {
+    .order-md-1, .order-md-2 {
+        order: initial;
+    }
+}
+
+.services-icon-section {
+    padding: 4rem;
+    background: linear-gradient(135deg, #3a78c2, #242f40);
+    color: white;
+    text-align: center;
+}
+
+.service-box {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .service-box:hover {
+        transform: scale(1.1);
+    }
+
+/* ANIMACIONES */
+/* Fade-in para texto */
+.animate-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Deslizamiento lateral */
+.animate-slide-in {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Zoom-in */
+.animate-zoom-in {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Clase que se añade cuando el elemento es visible */
+.show {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+}
+
+/*    GALLERY SECTION*/
+
+.gallery-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #FFFFFF, rgba(255, 255, 255, 0.8));
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+    .gallery-image:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+.full-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Animación de aparición para la Galería */
+.animate-gallery {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Clase que se activa al hacer scroll */
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*EXPERIENCES*/
+
+.experiences-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #f7f9fc;
+}
+
+/* Ajustar altura del MudCarousel para que no recorte las tarjetas */
+.carousel-experiences {
+    min-height: 550px; /* Se ajusta al contenido */
+}
+
+/* Asegurar que cada item del carousel tenga suficiente espacio */
+.carousel-item {
+    min-height: 550px; /* Ajusta según el contenido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ajuste de las tarjetas */
+.experience-card {
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 10px;
+    max-width: 350px;
+    margin: auto;
+}
+
+.exp-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.exp-text {
+    color: #555;
+    font-style: italic;
+}
+
+.rating-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+
+/*FOOTER SECTION*/
+
+.footer-section {
+    background-color: var(--mud-palette-appbar-background);
+    color: var(--mud-palette-appbar-text);
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-description {
+    margin-top: 10px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .footer-links h3 {
+        margin-bottom: 10px;
+    }
+
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        margin: 5px 0;
+        transition: color 0.3s ease-in-out;
+    }
+
+        .footer-links a:hover {
+            color: #f0a500;
+        }
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .footer-social h3 {
+        margin-bottom: 10px;
+    }
+
+    .footer-social button {
+        margin: 5px;
+    }
+
+.footer-divider {
+    margin: 2rem 0;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+@media (max-width: 768px) {
+    .footer-social {
+        display: block;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/*FAQS SECTION*/
+.faq-section {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.faq-container {
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}

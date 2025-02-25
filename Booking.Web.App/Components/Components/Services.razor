@@ -1,0 +1,81 @@
+﻿@inject IJSRuntime JSRuntime
+
+<section id="servicios" class="services-section">
+    <MudText Typo="Typo.h3" Class="section-title animate-fade-in">Servicios</MudText>
+    <MudGrid>
+        <!-- Alquiler de Rancho -->
+        <MudItem xs="12" md="6" Class="animate-slide-in">
+            <MudImage Elevation="4" src="https://placehold.co/600x400@2x.png" class="service-img" Width="600" Height="400" />
+        </MudItem>
+        <MudItem xs="12" md="6" Class="animate-slide-in">
+            <div class="service-text-container">
+                <MudText Class="service-title animate-fade-in" Typo="Typo.h4">Alquiler de Rancho</MudText>
+                <MudText Class="service-text animate-fade-in" Typo="Typo.body1">
+                    Disfruta de la mejor experiencia en un rancho de playa con todas las comodidades.
+                </MudText>
+            </div>
+            <div class="service-button-container">
+                <MudButton Class="animate-zoom-in" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large">
+                    Ver más
+                </MudButton>
+            </div>
+        </MudItem>
+
+        <!-- Piscina Privada -->
+        <MudItem xs="12" md="6" class="order-md-2 animate-slide-in">
+            <MudImage Elevation="4" src="https://placehold.co/600x400" class="service-img" Width="400" Height="600" />
+        </MudItem>
+        <MudItem xs="12" md="6" class="order-md-1 animate-slide-in">
+            <div class="service-text-container">
+                <MudText Class="service-title animate-fade-in" Typo="Typo.h4">Piscina Privada</MudText>
+                <MudText Class="service-text animate-fade-in" Typo="Typo.body1">
+                    Sumérgete en una piscina con vista espectacular.
+                </MudText>
+            </div>
+            <div class="service-button-container">
+                <MudButton Class="animate-zoom-in" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large">
+                    Ver más
+                </MudButton>
+            </div>
+        </MudItem>
+    </MudGrid>
+</section>
+
+<section class="services-icon-section">
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="12" sm="6" md="3" Class="animate-fade-in">
+            <div class="service-box animate-zoom-in">
+                <MudIcon Icon="@Icons.Material.Filled.SocialDistance" Size="Size.Large" />
+                <MudIcon Icon="@Icons.Material.Filled.BeachAccess" Size="Size.Large" />
+                <MudText Typo="Typo.h6">Cerca de la playa</MudText>
+                <MudText Typo="Typo.caption">Acceso directo a la playa</MudText>
+            </div>
+        </MudItem>
+
+        <MudItem xs="12" sm="6" md="3" Class="animate-fade-in">
+            <div class="service-box animate-zoom-in">
+                <MudIcon Icon="@Icons.Material.Filled.Wifi" Size="Size.Large" />
+                <MudText Typo="Typo.h6">Wifi gratis</MudText>
+                <MudText Typo="Typo.caption">Conexión WIFI rápida</MudText>
+            </div>
+        </MudItem>
+
+        <MudItem xs="12" sm="6" md="3" Class="animate-fade-in">
+            <div class="service-box animate-zoom-in">
+                <MudIcon Icon="@Icons.Material.Filled.Restaurant" Size="Size.Large" />
+                <MudText Typo="Typo.h6">Gastronomía</MudText>
+                <MudText Typo="Typo.caption">Menús de cocina local e internacional.</MudText>
+            </div>
+        </MudItem>
+    </MudGrid>
+</section>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("initAnimations");
+        }
+    }
+}

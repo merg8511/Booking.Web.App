@@ -1,0 +1,49 @@
+﻿<footer class="footer-section">
+    <MudContainer>
+        <MudGrid Justify="Justify.Center" Spacing="6">
+
+            <!-- LOGO Y DESCRIPCIÓN -->
+            <MudItem xs="12" sm="6" md="4">
+                <div class="footer-brand">
+                    <MudImage Src="images/refsol.webp" Height="60" />
+                    <MudText Typo="Typo.body1" Class="footer-description" Color="Color.Secondary">
+                        Disfruta de una experiencia única en la mejor playa.
+                    </MudText>
+                </div>
+            </MudItem>
+
+            <!-- ENLACES RÁPIDOS -->
+            <MudItem xs="12" sm="6" md="4">
+                <div class="footer-links">
+                    <h3 class="footer-title">Enlaces Rápidos</h3>
+                    <MudLink Href="#" Color="Color.Secondary" Class="footer-description">Inicio</MudLink>
+                    <MudLink Href="#" Color="Color.Secondary" Class="footer-description">Servicios</MudLink>
+                    <MudLink Href="#" Color="Color.Secondary" Class="footer-description">Galería</MudLink>
+                    <MudLink Href="#" Color="Color.Secondary" Class="footer-description">Experiencias</MudLink>
+                    <MudLink Href="#" Color="Color.Secondary" Class="footer-description">Contacto</MudLink>
+                </div>
+            </MudItem>
+
+            <!-- REDES SOCIALES -->
+            <MudItem xs="12" sm="6" md="4">
+                <div class="footer-social">
+                    <h3 class="footer-title">Síguenos</h3>
+                    <MudIconButton Color="Color.Tertiary" Icon="@Icons.Custom.Brands.Facebook" />
+                    <MudIconButton Color="Color.Tertiary" Icon="@Icons.Custom.Brands.Instagram" />
+                    <MudIconButton Color="Color.Tertiary" Icon="@Icons.Custom.Brands.Twitter" />
+                </div>
+            </MudItem>
+
+        </MudGrid>
+
+        <!-- LÍNEA DIVISORIA -->
+        <MudDivider Class="footer-divider" />
+
+        <!-- DERECHOS RESERVADOS -->
+        <div class="footer-bottom">
+            <MudText Typo="Typo.caption">
+                © @DateTime.Now.Year Global Code. Todos los derechos reservados.
+            </MudText>
+        </div>
+    </MudContainer>
+</footer>

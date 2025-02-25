@@ -1,0 +1,13 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudImage Elevation="4" Src="@ImageUrl" class="full-image" />
+    </DialogContent>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; }
+    [Parameter] public string ImageUrl { get; set; } = "";
+
+    private void Close() => MudDialog.Cancel();
+}
